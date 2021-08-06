@@ -62,7 +62,7 @@ function Sidebar() {
       </div>
       <div className="Sidebar">
         
-      {/* <Tab.Container id="left-tabs-example">
+      <Tab.Container id="left-tabs-example">
      
             <div className="SidebarList">
               <Nav variant="pills">
@@ -78,10 +78,10 @@ function Sidebar() {
                 })}
               </Nav>
             </div>
-            </div>
-      </Tab.Container> */}
+            {/* </div> */}
+      </Tab.Container>
 
-        <ul className="SidebarList">
+        {/* <ul className="SidebarList">
           {SidebarData.map((val, key) => {
             return (
               <li
@@ -103,7 +103,7 @@ function Sidebar() {
               </li>
             );
           })}
-        </ul>
+        </ul> */}
       </div>
     </>
   );
