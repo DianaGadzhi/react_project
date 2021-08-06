@@ -10,26 +10,26 @@ function Filter() {
     <>
       <style type="text/css">
         {`
-            .nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+            .filterPills .element.active, .filterPills .show>.element {
             color: #272931;
                     background-color: #ffffff;
                     border-radius: 10px;
             }
 
-            .nav-link {
+            .element {
             
                 color: #272931;
             }
 
             @media screen and (max-width: 767px) {
-            .nav {
+            .filter {
               white-space: nowrap;
               overflow-y: scroll;
               // display:flex; 
               flex-wrap: nowrap
             }
 
-            .nav::-webkit-scrollbar {
+            .filter::-webkit-scrollbar {
               display: none;
           }
 
@@ -45,11 +45,11 @@ function Filter() {
 
       <Tab.Container id="left-tabs-example">
             <div className="navDiv">
-              <Nav variant="pills">
+              <Nav className="filter filterPills" variant="pills">
                 {FiltersData.map((val, key) => {
                   return (
                     <Nav.Item>
-                      <Nav.Link eventKey={key}>
+                      <Nav.Link className="element" eventKey={key}>
                         {val.icon}
                         <span className="span">{val.title}</span>
                       </Nav.Link>

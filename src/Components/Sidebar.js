@@ -22,24 +22,150 @@ function Sidebar() {
       <style type="text/css">{`  
       
       .navbar {
-        height: 106px;
+       
         display: none;
-        background-color: transparent;
       }
 
 
       @media screen and (max-width: 991px) {
         .navbar {
+          height: 106px;
+          display: flex;
+          background-color: transparent;
 
-        display: flex;
         }
+      }
+
+      .navVerticalPills .linkElement.active, .navVerticalPills .show>.linkElement {
+          color: white;
+          background-color: #fe8862;
+          border-radius: 16px;
+          fill: white;
+
+        }
+
+        .linkElement {
+          padding: 8px 20px 8px 24px;
+            color: #272931;
+            width: 200px;
+            height: 50px;
+            margin: 10px 20px ;
+        }
+
+        .spanNav {
+          margin-left:8px;
+          font-style: normal;
+          font-weight: 600;
+          font-size: 13px;
+          line-height: 15px;
+      }
+
+
+      .avatar {
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        display: block;
+      }
+      
+      .logo_colour {
+        height: 46px;
+        object-fit: contain;
+        display: flex;
+        justify-content: flex-start;
+        flex-direction: row;
+      }
+      
+      .nav_icon {
+        display: block;
+        flex-grow: 1;
+      }
+      
+      @media only screen and (min-width: 992px) {
+        .sidebarLogo {
+          height: 120px;
+          margin-left: 44px;
+          width: auto;
+        }
+
+            
+        .SidebarList {
+          display: block;
+          margin-top:40px;
+
+        }
+      
+        .logoVertical {
+          height: 100%;
+          width: 100%;
+          display: flex;
+          flex-direction: row;
+          flex-wrap: nowrap;
+          align-content: flex-end;
+          padding-bottom: 16px;
+          align-items: flex-end;
+        }
+      
+        .nav_icon {
+          display: none;
+        }
+
+        navVertical {
+          display: flex;
+          flex-wrap: nowrap;
+          list-style: none;
+          flex-direction: column;
+          margin: 20px;
+        
+        }
+      
+      }
+      
+      .avatarNav {
+        display: none;
+      }
+      
+      @media screen and (max-width: 991px) {
+      
+        .avatar {
+          display: none;
+        }
+      
+        .avatarNav {
+          border-radius: 50%;
+          width: 44px;
+          height: 44px;
+          display: flex;
+        }
+      
+        .sidebarLogo {
+          display: none;
+        }
+      
+        .SidebarList {
+          display: none;
+
+        }
+      
+        .logo_colour {
+          padding: 5px;
+          width: 30px;
+          height: 30px;
+          margin: 10px;
+          line-height: 30px;
+          text-align: center;
+        }
+      
+      
+      
       }
 
       
       `}</style>
 
+      {/* Navmar Movil version */}
       <Navbar variant="light">
-        <Container className="">
+        <Container>
           <Nav>
             <UnionIcon className="nav_icon" onClick={showSidebar} />
           </Nav>
@@ -53,6 +179,7 @@ function Sidebar() {
           </Nav>
         </Container>
       </Navbar>
+      {/* Navmar Desktop version */}
       <div className="sidebarLogo">
         <Row className="logoVertical">
           <Col className="logo_colour">
@@ -60,28 +187,33 @@ function Sidebar() {
           </Col>
         </Row>
       </div>
-      <div className="Sidebar">
-        
       <Tab.Container id="left-tabs-example">
-     
-            <div className="SidebarList">
-              <Nav variant="pills">
-                {SidebarData.map((val, key) => {
-                  return (
-                    <Nav.Item>
-                      <Nav.Link eventKey={key}>
-                        {val.icon}
-                        <span className="span">{val.title}</span>
-                      </Nav.Link>
-                    </Nav.Item>
-                  );
-                })}
-              </Nav>
-            </div>
-            {/* </div> */}
+        <div className="SidebarList">
+          <Nav className="navVertical navVerticalPills" variant="pills">
+            {SidebarData.map((val, key) => {
+              return (
+                <Nav.Item>
+                  <Nav.Link
+                    className="linkElement"
+                    id={
+                      window.location.pathname == val.path
+                        ? "iconActive"
+                        : "icon"
+                    }
+                    eventKey={key}
+                  >
+                    {val.icon}
+                    <span className="spanNav">{val.title}</span>
+                  </Nav.Link>
+                </Nav.Item>
+              );
+            })}
+          </Nav>
+        </div>
       </Tab.Container>
 
-        {/* <ul className="SidebarList">
+      {/* <div className="Sidebar">
+        <ul className="SidebarList">
           {SidebarData.map((val, key) => {
             return (
               <li
@@ -103,8 +235,8 @@ function Sidebar() {
               </li>
             );
           })}
-        </ul> */}
-      </div>
+        </ul>
+      </div> */}
     </>
   );
 }
